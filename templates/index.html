@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="posts">
+        {% for post in posts %}
+            <div id="container">
+                <h3><a href="/view/{{ post.slug }}.html">{{ post.title }}</a></h3>
+                <small>{{ post.modified_date }}</small>
+                <br/><br/>
+
+                <p>{{ post.description|truncatewords:300 }}</p>
+                <small>Tags:</small>
+                {% for tag in post.tags.all %}
+                    <b>
+                        <small>{{ tag.name }}</small>
+                    </b>
+                {% endfor %}
+            </div>
+            <hr/>
+        {% endfor %}
+    </div>
+{% endblock %}
