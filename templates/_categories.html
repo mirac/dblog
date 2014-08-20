@@ -1,10 +1,10 @@
 {% load cache %}
-<h2 style="color: #666">Categories</h2>
+<h3 style="color: #000">Categories</h3>
 <br>
 <ul>
-    {% cache 300 sidebar %}
+    {% cache 1 sidebar %}
         {% for category in categories %}
-            <li><a href="/category/{{ category.slug }}.html">{{ category.title }}</a></li>
+            <li><a style="color: #666; font-size: 16px" href="/category/{{ category.slug }}.html">{{ category.title }}</a></li>
         {% endfor %}
     {% endcache %}
 </ul>

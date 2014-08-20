@@ -14,77 +14,78 @@
 </head>
 <body>
 
-<div class="row">
-    <div class="span3"
-         style="color: #000;box-shadow: 10px 10px 5px #888888;position:fixed;background-color:#FFA500;height:100%;top:0px;padding:5px;margin-left: 15px; padding-right: 25px"
-         id="leftmargin">
+<div id="wrapper">
+    <div id="sidebar-wrapper"
+         style="padding-left:15px;color: #000;box-shadow: 10px 10px 5px #888888;background-color:#FFCC66;">
         {% block sidebar %}
             <div id="cats">
                 {% include "_categories.html" %}
             </div>
         {% endblock %}
         <hr/>
-        <h3 style="color: #666">Search</h3>
+        <h3 style="color: #000">Search</h3>
 
         <form action="/search.html" method="GET">
             <input type="text" name="keyword" id="keyword" placeholder="Search.."/>
         </form>
         <hr/>
-        <h3 style="color: #666">Links</h3>
+        <h3 style="color: #000">Links</h3>
         <ul>
-            <li><a style="font-size: 12px" href="http://mirac.me">Mirac Personal Blog</a></li>
-            <li><a style="font-size: 12px" href="https://www.python.org">Python.org</a></li>
-            <li><a style="font-size: 12px" href="http://www.bilkent.edu.tr">Bilkent University</a></li>
+            <li><a style="font-size: 12px;color: #666" href="http://mirac.me">Mirac Personal Blog</a></li>
+            <li><a style="font-size: 12px;color: #666" href="https://www.python.org">Python.org</a></li>
+            <li><a style="font-size: 12px;color: #666" href="http://www.bilkent.edu.tr">Bilkent University</a></li>
         </ul>
         <hr/>
-        <h3 style="color: #666">Facebook</h3>
+        <h3 style="color: #000">Facebook</h3>
 
         <div id="fb-root"></div>
-        <script>(function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "//connect.facebook.net/tr_TR/sdk.js#xfbml=1&version=v2.0";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
         <div class="fb-like-box" data-href="https://www.facebook.com/mirac.me" data-width="100" data-colorscheme="light"
              data-show-faces="false" data-header="false" data-stream="false" data-show-border="true"></div>
     </div>
-</div>
-<div class="container">
+    <div id="page-content-wrapper">
+        <div class="page-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span id="logo" style="float: right">
+                            <a href="{% url "index" %}"><img src="{% static "home.png" %}" width="32" height="32"
+                                                             style="margin-top: 35px" alt=""/></a>
+                        </span>
 
-    <div class="row">
-        <div class="span9 offset3"
-             style="background-color:#049cdb;color: #ffffff;padding:10px;box-shadow: 10px 10px 5px #888888;">
-        <span id="logo" style="float: right">
-                <a href="{% url "index" %}"><img src="{% static "home2.gif" %}" width="32" height="32" alt=""/></a>
-            </span>
-            <h1 id="url"><a href="{% url 'index' %}">{{ settings.site_title }}</a></h1>
-            <br>
+                        <h1><a href="{% url 'index' %}">{{ settings.site_title }}</a></h1>
+                        <br>
 
-            <div class="posts">
-                {{ settings.site_description }}
+                        <div class="posts">
+                            {{ settings.site_description }}
+                        </div>
+
+                        <hr/>
+                        {% block content %} {% endblock %}
+                    </div>
+                </div>
             </div>
+        </div>
+    </div>
 
-            <hr/>
-            {% block content %} {% endblock %}
+    <div id="page-content-wrapper"
+         style="margin-left:-10px;background-color:#049cdb;color: #ffffff;padding:10px;box-shadow: 10px 10px 5px #888888;">
+        <div class="page-content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p id="footer-message">
+                            {{ settings.footer_description }}
+                        </p>
+                 <span style="text-align: right">&copy; Proudly powered by <a class="footer_url"
+                                                                              href="http://python.org" target="_blank">Python</a> &
+            <a class="footer_url" href="https://www.djangoproject.com" target="_blank">Django</a></span>
 
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
-<center>
-    <div id="footer">
-        <br/><br>
-
-        <p id="footer-message">
-            {{ settings.footer_description }}
-        </p>
-
-        <p>&copy; Proudly powered by <a href="http://python.org" target="_blank">Python</a> &
-            <a href="https://www.djangoproject.com" target="_blank">Django</a></p>
-    </div>
-</center>
+<script type="text/javascript" src="{% static "fb.js" %}"></script>
 </body>
 </html>

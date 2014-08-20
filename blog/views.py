@@ -37,7 +37,8 @@ def post_view(request, slug):
 
 def category_view(request, slug):
     category = get_object_or_404(Category, slug=slug)
-    posts = Post.objects.filter(category=category).all()
+    posts = Post.objects.filter(category=category).all() \
+        .order_by("-created_date")
 
     return render_to_response("category_view.html", {
         "category": category,
@@ -46,6 +47,7 @@ def category_view(request, slug):
         "posts": posts,
         "settings": settings
     })
+
 
 def tag_view(request, slug):
     pass
@@ -64,7 +66,6 @@ def tag_view(request, slug):
         "settings": settings
     }, RequestContext(request))
     """
-
 
 
 def search(request):
